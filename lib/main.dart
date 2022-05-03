@@ -54,11 +54,29 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            _nameField(context),
             _emailField(context),
             _passwordField(context),
           ],
         ),
       ),
+    );
+  }
+
+    Widget _nameField(BuildContext context) {
+    return StreamBuilder(
+      stream: _signupBloc.name,
+      builder: (context, snapshot) {
+        return TextField(
+          onChanged: _signupBloc.changeName,
+          keyboardType: TextInputType.name,
+          decoration: InputDecoration(
+            hintText: 'Jim Jones',
+            labelText: 'Name',
+            errorText: snapshot.hasError ? snapshot.error.toString() : null,
+          ),
+        );
+      },
     );
   }
 

@@ -22,9 +22,10 @@ class DatabaseService {
 
   _fetchPersons() {
     FirebaseFirestore.instance
-        .collection('persons')
+        .collection(Person.COLLECTION_NAME)
         .snapshots()
         .listen((QuerySnapshot qs) {
+      debugPrint('There are ${qs.docs.length} persons');
       for (DocumentSnapshot ds in qs.docs) {
         final p = Person.fromSnapshot(ds);
         debugPrint(p.toString());
