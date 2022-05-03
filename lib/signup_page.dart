@@ -30,16 +30,16 @@ class SignupPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            _nameField(context),
-            _emailField(context),
-            _passwordField(context),
+            _nameTextField(context),
+            _emailTextField(context),
+            _passwordTextField(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _nameField(BuildContext context) {
+  Widget _nameTextField(BuildContext context) {
     return StreamBuilder(
       stream: _signupBloc.name,
       builder: (context, snapshot) {
@@ -56,7 +56,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  Widget _emailField(BuildContext context) {
+  Widget _emailTextField(BuildContext context) {
     return StreamBuilder(
       stream: _signupBloc.email,
       builder: (context, snapshot) {
@@ -73,7 +73,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-  Widget _passwordField(BuildContext context) {
+  Widget _passwordTextField(BuildContext context) {
     return StreamBuilder(
       stream: _signupBloc.password,
       builder: (context, snapshot) {
