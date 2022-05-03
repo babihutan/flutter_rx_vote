@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>338850178702-7jbiltfs5ulmjpntuvk1i7v3g80ah2vn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.338850178702-7jbiltfs5ulmjpntuvk1i7v3g80ah2vn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCN-lsRiq55FqxeKS7sFiDeN3FPkl9vYu8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>338850178702</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.flutterRxVote</string>
+	<key>PROJECT_ID</key>
+	<string>flutterrxvote</string>
+	<key>STORAGE_BUCKET</key>
+	<string>flutterrxvote.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:338850178702:ios:f15eaf1227a0829cc5cbdf</string>
+</dict>
+</plist>
