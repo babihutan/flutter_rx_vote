@@ -1,10 +1,9 @@
 import 'dart:async';
 
 class SignupValidators {
-
   final validateName =
       StreamTransformer<String, String>.fromHandlers(handleData: (name, sink) {
-    if (name.length>3) {
+    if (name.length > 3) {
       sink.add(name);
     } else {
       sink.addError('Enter a valid name');
@@ -13,7 +12,10 @@ class SignupValidators {
 
   final validateEmail =
       StreamTransformer<String, String>.fromHandlers(handleData: (email, sink) {
-    if (email.contains('@')) {
+    final isValid = RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(email);
+    if (isValid) {
       sink.add(email);
     } else {
       sink.addError('Enter a valid email');

@@ -17,6 +17,8 @@ class SignupBloc with SignupValidators {
   Function(String) get changeEmail => _emailSubject.sink.add;
   Function(String) get changePassword => _passwordSubject.sink.add;
 
+  //consider firebase is email unique check
+
   Stream<bool> get isSubmitValid =>
       Rx.combineLatest3(name, email, password, (String n, String e, String pwd) => true);
 
