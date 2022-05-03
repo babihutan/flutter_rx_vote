@@ -32,8 +32,5 @@ class SignupBloc with SignupValidators {
     debugPrint('name=$name, email=$email');
     final personId = await Person.create(name: name, email: email);
     debugPrint('created person $personId');
-    _nameSubject.sink.add('');
-    _emailSubject.sink.add('');
-    _passwordSubject.sink.add('');
   }
 }

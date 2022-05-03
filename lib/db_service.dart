@@ -26,10 +26,13 @@ class DatabaseService {
         .snapshots()
         .listen((QuerySnapshot qs) {
       debugPrint('There are ${qs.docs.length} persons');
+      final List<Person> list = [];
       for (DocumentSnapshot ds in qs.docs) {
         final p = Person.fromSnapshot(ds);
-        debugPrint(p.toString());
+        list.add(p);
       }
+      list.sort();
+      _personsSubject.sink.add(list);
     });
   }
 

@@ -4,7 +4,7 @@ import 'package:flutter_rx_vote/signup_bloc.dart';
 class SignupPage extends StatelessWidget {
   SignupPage({Key? key}) : super(key: key);
 
- final SignupBloc _signupBloc = SignupBloc();
+  final SignupBloc _signupBloc = SignupBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +14,18 @@ class SignupPage extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: StreamBuilder<bool>(
-        stream: _signupBloc.isSubmitValid,
-        builder: (context, isValidSnap) {
-          return ElevatedButton(
-            onPressed: (isValidSnap.hasData && isValidSnap.data!) ? _signupBloc.submit : null,
-            child: const Text('Submit'),
-          );
-        }
-      ),
+          stream: _signupBloc.isSubmitValid,
+          builder: (context, isValidSnap) {
+            return ElevatedButton(
+              onPressed: (isValidSnap.hasData && isValidSnap.data!)
+                  ? () {
+                      _signupBloc.submit();
+                      Navigator.of(context).pop();
+                    }
+                  : null,
+              child: const Text('Submit'),
+            );
+          }),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +39,7 @@ class SignupPage extends StatelessWidget {
     );
   }
 
-    Widget _nameField(BuildContext context) {
+  Widget _nameField(BuildContext context) {
     return StreamBuilder(
       stream: _signupBloc.name,
       builder: (context, snapshot) {
