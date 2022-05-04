@@ -8,7 +8,7 @@ class SignupBloc with SignupValidators {
   final _emailSubject = BehaviorSubject<String>();
   final _nameSubject = BehaviorSubject<String>();
 
-  Stream<String> get name => _emailSubject.stream.transform(validateName);
+  Stream<String> get name => _nameSubject.stream.transform(validateName);
   Stream<String> get email => _emailSubject.stream.transform(validateEmail);
   Stream<String> get password =>
       _passwordSubject.stream.transform(validatePassword);
@@ -17,10 +17,17 @@ class SignupBloc with SignupValidators {
   Function(String) get changeEmail => _emailSubject.sink.add;
   Function(String) get changePassword => _passwordSubject.sink.add;
 
-  //consider firebase is email unique check
+  Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
+          (String n, String e, String pwd)  => true);
 
-  Stream<bool> get isSubmitValid => Rx.combineLatest3(
-      name, email, password, (String n, String e, String pwd) => true);
+  // Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
+  //         (String n, String e, String pwd) {
+  //       debugPrint('name=$n, email=$e, pwd=$pwd');
+  //       if (n.isEmpty || e.isEmpty || pwd.isEmpty) {
+  //         return false;
+  //       }
+  //       return true;
+  //     });
 
   dispose() {
     debugPrint('[signup_bloc] dispose');
