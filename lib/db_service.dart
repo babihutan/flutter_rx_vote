@@ -43,12 +43,22 @@ class DatabaseService {
         return map[myId];
       });
 
+  Stream<String> get xxx => me
+      .map((Person? me) => me!.name.toUpperCase())
+      .map((event) => event.toLowerCase());
+
   _fetchPersons() {
     FirebaseFirestore.instance
         .collection(Person.COLLECTION_NAME)
         .snapshots()
         .listen((QuerySnapshot qs) {
       debugPrint('There are ${qs.docs.length} persons');
+      if (qs.docs.isEmpty) {
+        if (qs.docs.isEmpty) {
+          Person.initPersons();
+          return;
+        }
+      }
       final List<Person> list = [];
       final v = _personsMapSubject.value;
       for (DocumentSnapshot ds in qs.docs) {
@@ -68,6 +78,10 @@ class DatabaseService {
         .snapshots()
         .listen((QuerySnapshot qs) {
       debugPrint('There are ${qs.docs.length} polls');
+      if (qs.docs.isEmpty) {
+        Poll.initPolls();
+        return;
+      }
       final List<Poll> list = [];
       final v = _pollsMapSubject.value;
       for (DocumentSnapshot ds in qs.docs) {

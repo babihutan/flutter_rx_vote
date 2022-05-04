@@ -11,7 +11,7 @@ class SignInPage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            _fastLoginButton(context, 'rogersmith@mailinator.com'),
+            _fastLoginButton(context, 'jamesjones@mailinator.com'),
             _fastLoginButton(context, 'bbb'),
             _fastLoginButton(context, 'aaa'),
           ],

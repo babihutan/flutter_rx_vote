@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_rx_vote/poll.dart';
 
 class Vote {
@@ -27,17 +28,17 @@ class Vote {
   String toString() =>
       "Vote<personId=$votingPersonId, pollId=$pollId, answer=$answerIndex>";
 
-  static Future<String> create(
+  static Future<void> create(
       {required int answerIndex,
       required String votingPersonId,
       required String pollId}) async {
     final doc = FirebaseFirestore.instance
-        .collection('${Poll.COLLECTION_NAME}/$pollId/$SUB_COLLECTION_NAME/$votingPersonId')
-        .doc();
+        .doc('${Poll.COLLECTION_NAME}/$pollId/$SUB_COLLECTION_NAME/$votingPersonId');
     final Map<String, dynamic> map = {};
     map[VOTE_DATE] = DateTime.now();
     map[ANSWER_INDEX] = answerIndex;
     await doc.set(map);
-    return doc.id;
+    debugPrint('[vote] created vote for poll $pollId and voter $votingPersonId with $map');
+    return;
   }
 }

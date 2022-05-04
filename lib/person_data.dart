@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
 
 class Person implements Comparable<Person> {
   static const String NAME = 'name';
@@ -30,12 +31,31 @@ class Person implements Comparable<Person> {
   String toString() => "Person<${reference.id}, name=$name, email=$email>";
 
   static Future<String> create(
-      {required String name, required String email}) async {
-    final doc = FirebaseFirestore.instance.collection(COLLECTION_NAME).doc();
+      {required String name, required String email, String? id}) async {
+    final personId =
+        id ?? FirebaseFirestore.instance.collection(COLLECTION_NAME).doc().id;
+    final doc = FirebaseFirestore.instance.doc('$COLLECTION_NAME/$personId');
     final Map<String, dynamic> map = {};
     map[EMAIL] = email;
     map[NAME] = name;
     await doc.set(map);
-    return doc.id;
+    debugPrint('[person] created person $personId with $map');
+    return personId;
+  }
+
+  static initPersons() {
+    create(
+        id: 'person-1',
+        name: 'James Jones',
+        email: 'jamesjones@mailinator.com');
+    create(
+        id: 'person-2',
+        name: 'Summer Anderson',
+        email: 'summeranderson@mailinator.com');
+    create(id: 'person-3', name: 'Randy Tong', email: 'rtong@mailinator.com');
+    create(
+        id: 'person-3',
+        name: 'Felix Wallace',
+        email: 'fwallace@mailinator.com');
   }
 }
