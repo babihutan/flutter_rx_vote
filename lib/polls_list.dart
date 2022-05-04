@@ -15,11 +15,15 @@ class PollsList extends StatelessWidget {
         if (!pollListSnap.hasData) {
           return Text('Loading $title ...');
         }
-        return Column(
-          children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-            for(Poll poll in pollListSnap.data!) Text(poll.name),
-          ]
+        return Container(
+          margin: const EdgeInsets.only(top:16),
+          child: Column(
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+              if( pollListSnap.data!.isEmpty) const Text('No polls'),
+              for(Poll poll in pollListSnap.data!) Text(poll.name),
+            ]
+          ),
         );
       },
     );

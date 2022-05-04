@@ -1,9 +1,18 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_rx_vote/db_service.dart';
 import 'package:flutter_rx_vote/poll.dart';
 import 'package:flutter_rx_vote/vote.dart';
 import 'package:rxdart/rxdart.dart';
 
 class PollsBloc {
+  PollsBloc() {
+    debugPrint('[polls_bloc] ctor');
+    allPolls.listen((polls) {
+      for (Poll poll in polls) {
+        dbService.fetchVotes(pollId: poll.id);
+      }
+    });
+  }
   Stream<List<Poll>> get allPolls => dbService.polls;
 
   Stream<List<Poll>> get activePolls => allPolls.map(

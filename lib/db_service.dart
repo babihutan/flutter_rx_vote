@@ -35,7 +35,7 @@ class DatabaseService {
   final _pollsMapSubject = BehaviorSubject.seeded(<String, Poll>{});
   Stream<Map<String, Poll>> get pollsMap => _pollsMapSubject.stream;
 
-  final _votesMapSubject = BehaviorSubject<Map<String, List<Vote>>>();
+  final _votesMapSubject = BehaviorSubject.seeded(<String, List<Vote>>{});
   Stream<Map<String, List<Vote>>> get votesMap => _votesMapSubject.stream;
 
   Stream<Person?> get me => Rx.combineLatest2(myPersonId, personsMap,
@@ -96,6 +96,9 @@ class DatabaseService {
   }
 
   fetchVotes({required String pollId}) {
+    if (_votesMapSubject.value.containsKey(pollId)) {
+      return;
+    }
     FirebaseFirestore.instance
         .collection(
             '${Poll.COLLECTION_NAME}/$pollId/${Vote.SUB_COLLECTION_NAME}')
