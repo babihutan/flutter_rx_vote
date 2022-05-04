@@ -16,6 +16,15 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            StreamBuilder<Person?>(
+              stream: dbService.me,
+              builder: (context, meSnap) {
+                if (!meSnap.hasData || meSnap.data == null) {
+                  return const Text('No data');
+                }
+                return Text('Me: ${meSnap.data!.name}');
+              },
+            ),
             StreamBuilder<List<Person>>(
               stream: dbService.persons,
               builder: (context, personsSnap) {
@@ -26,13 +35,16 @@ class MyHomePage extends StatelessWidget {
               },
             ),
             TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => SignupPage()),
-                  );
-                },
-                child: const Text('Add Person'))
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SignupPage(),
+                  ),
+                );
+              },
+              child: const Text('Add Person'),
+            )
           ],
         ),
       ),
