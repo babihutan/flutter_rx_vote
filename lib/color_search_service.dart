@@ -9,7 +9,7 @@ class ColorSearchService {
     ColorInfo(Colors.pinkAccent, 'nice pink')
   ];
 
-  Future<List<ColorInfo>> search(String searchTerm) async {
+  Stream<List<ColorInfo>> search(String searchTerm) async* {
     debugPrint('[color_search_service] search entry, search=$searchTerm');
     final List<ColorInfo> results = [];
     for (ColorInfo ci in _colors) {
@@ -26,7 +26,7 @@ class ColorSearchService {
     }
     debugPrint(
         '[color_search_service] found ${results.length} results for search term $searchTerm');
-    return results;
+    yield results;
   }
 }
 

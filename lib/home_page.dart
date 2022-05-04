@@ -6,6 +6,9 @@ import 'package:flutter_rx_vote/polls_bloc.dart';
 import 'package:flutter_rx_vote/polls_list.dart';
 import 'package:flutter_rx_vote/signup_page.dart';
 
+import 'github_api.dart';
+import 'search_widget.dart';
+
 class MyHomePage extends StatelessWidget {
   MyHomePage({Key? key}) : super(key: key);
 
@@ -66,6 +69,18 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               child: const Text('Color Search'),
+            ),
+            TextButton(
+              onPressed: () {
+                final api = GithubApi();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SearchScreen(api: api),
+                  ),
+                );
+              },
+              child: const Text('Github search'),
             )
           ],
         ),

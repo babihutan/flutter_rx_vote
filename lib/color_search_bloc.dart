@@ -10,10 +10,10 @@ class ColorSearchBloc {
 
     //searchText.switchMap((i) => TimerStream(i, const Duration(seconds: 2))).listen(debugPrint);
 
-  searchText.switchMap((query) async* {
-    debugPrint('searching: $query');
-    yield await _colorSearchService.search(query);
-  }); 
+    // searchText.switchMap((query) async* {
+    //   debugPrint('searching: $query');
+    //   yield await _colorSearchService.search(query);
+    // });
 
     // searchText.debounce((String search) =>
     //     TimerStream(true, const Duration(milliseconds: 500)).switchMap((value) {
@@ -24,10 +24,22 @@ class ColorSearchBloc {
     //   yield await _colorSearchService.search(searchTerm);
     // }).listen((event) { })
 
-    // _searchTextSubject
-    //     //.debounce((_) => TimerStream(true, const Duration(milliseconds: 500)))
-    //     .switchMap((search) async* {
-    //   debugPrint('[color_search_bloc] post switch map, term=$search');
+    _results = _searchTextSubject
+        // If the text has not changed, do not perform a new search
+        //.distinct()
+        // Wait for the user to stop typing for 250ms before running a search
+        //.debounceTime(const Duration(milliseconds: 250))
+        // Call the Github api with the given search term and convert it to a
+        // State. If another search term is entered, switchMap will ensure
+        // the previous search is discarded so we don't deliver stale results
+        // to the View.
+        .switchMap((String term) => _colorSearchService.search(term));
+
+
+    // _results = _searchTextSubject.debounce((_) {
+    //   debugPrint('debounce');
+    //   return TimerStream(true, const Duration(milliseconds: 500));
+    // }).switchMap((search) async* {
     //   yield await _colorSearchService.search(search);
     // });
     // _searchTextSubject.stream.listen((event) {
@@ -35,7 +47,7 @@ class ColorSearchBloc {
     // });
   }
 
-  final _searchTextSubject = BehaviorSubject<String>();
+  final _searchTextSubject = PublishSubject<String>();
 
   Stream<String> get searchText => _searchTextSubject.stream;
 
