@@ -13,11 +13,13 @@ class SignupPage extends StatelessWidget {
         title: const Text('Signup Page'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: StreamBuilder<bool>(
-          stream: _signupBloc.isSubmitValid,
+      floatingActionButton: StreamBuilder<bool?>(
+          stream: _signupBloc.isOk,
           builder: (context, isValidSnap) {
             return ElevatedButton(
-              onPressed: (isValidSnap.hasData && isValidSnap.data!)
+              onPressed: (isValidSnap.hasData && 
+                isValidSnap.data!=null && 
+                isValidSnap.data!)
                   ? () async {
                       await _signupBloc.submit();
                       Navigator.of(context).pop();

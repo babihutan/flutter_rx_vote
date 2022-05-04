@@ -1,9 +1,20 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_rx_vote/validate_all_streams_have_data_and_no_errors.dart';
 import 'package:flutter_rx_vote/person_data.dart';
 import 'package:flutter_rx_vote/signup_validators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SignupBloc with SignupValidators {
+
+  SignupBloc() {
+    _validateAllStreamsHaveDataAndNoErrors = ValidateAllStreamsHaveDataAndNoErrors()
+                                              ..listen([
+                                                  name,
+                                                  email,
+                                                  password,
+                                                ]);
+  }
+
   final _passwordSubject = BehaviorSubject<String>();
   final _emailSubject = BehaviorSubject<String>();
   final _nameSubject = BehaviorSubject<String>();
@@ -20,6 +31,10 @@ class SignupBloc with SignupValidators {
   Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
           (String n, String e, String pwd)  => true);
 
+  late ValidateAllStreamsHaveDataAndNoErrors _validateAllStreamsHaveDataAndNoErrors;
+
+   Stream<bool?> get isOk => _validateAllStreamsHaveDataAndNoErrors.status;
+
   // Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
   //         (String n, String e, String pwd) {
   //       debugPrint('name=$n, email=$e, pwd=$pwd');
@@ -34,6 +49,7 @@ class SignupBloc with SignupValidators {
     _passwordSubject.close();
     _emailSubject.close();
     _nameSubject.close();
+    _validateAllStreamsHaveDataAndNoErrors.dispose();
   }
 
   Future<void> submit() async {
