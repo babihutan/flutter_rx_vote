@@ -7,6 +7,8 @@ class Person implements Comparable<Person> {
 
   final String name;
   final String email;
+  String get personId => reference.id;
+  String get id => reference.id;
   final DocumentReference reference;
 
   @override
