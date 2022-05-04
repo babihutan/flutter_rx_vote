@@ -18,9 +18,10 @@ class SignupPage extends StatelessWidget {
           builder: (context, isValidSnap) {
             return ElevatedButton(
               onPressed: (isValidSnap.hasData && isValidSnap.data!)
-                  ? () {
-                      _signupBloc.submit();
+                  ? () async {
+                      await _signupBloc.submit();
                       Navigator.of(context).pop();
+                      _signupBloc.dispose();
                     }
                   : null,
               child: const Text('Submit'),

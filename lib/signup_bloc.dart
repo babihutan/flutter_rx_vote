@@ -19,20 +19,22 @@ class SignupBloc with SignupValidators {
 
   //consider firebase is email unique check
 
-  Stream<bool> get isSubmitValid =>
-      Rx.combineLatest3(name, email, password, (String n, String e, String pwd) => true);
+  Stream<bool> get isSubmitValid => Rx.combineLatest3(
+      name, email, password, (String n, String e, String pwd) => true);
 
   dispose() {
+    debugPrint('[signup_bloc] dispose');
     _passwordSubject.close();
     _emailSubject.close();
     _nameSubject.close();
   }
 
-  submit() async {
+  Future<void> submit() async {
     final name = _nameSubject.value;
     final email = _emailSubject.value;
     debugPrint('name=$name, email=$email');
     final personId = await Person.create(name: name, email: email);
     debugPrint('created person $personId');
+    return;
   }
 }
