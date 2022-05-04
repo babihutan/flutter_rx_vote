@@ -32,9 +32,9 @@ class Poll implements Comparable<Poll> {
         assert(map[ANSWERS] != null),
         name = map[NAME],
         originatingPersonId = map[ORIGINATING_PERSON_ID],
-        answers = map[ANSWERS],
-        postingDate = map[POSTING_DATE],
-        votingDeadlineDate = map[VOTING_DEADLINE_DATE];
+        answers = _toList(map[ANSWERS]),
+        postingDate = _toDate(map[POSTING_DATE]),
+        votingDeadlineDate = _toDate(map[VOTING_DEADLINE_DATE]);
 
   Poll.fromSnapshot(DocumentSnapshot snapshot)
       : this.fromMap(
@@ -42,6 +42,18 @@ class Poll implements Comparable<Poll> {
 
   @override
   String toString() => "Poll<${reference.id}, name=$name, answers=$answers>";
+
+  static List<String> _toList(dynamic values) {
+    final List<String> list = [];
+    for (Object v in values) {
+      list.add(v as String);
+    }
+    return list;
+  }
+
+  static DateTime _toDate(dynamic dt) {
+    return Timestamp(dt.seconds, dt.nanoseconds).toDate();
+  }
 
   static Future<String> create({
     required String name,

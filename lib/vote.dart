@@ -17,7 +17,7 @@ class Vote {
       : assert(map[ANSWER_INDEX] != null),
         assert(map[VOTE_DATE] != null),
         answerIndex = map[ANSWER_INDEX],
-        voteDate = map[VOTE_DATE];
+        voteDate = _toDate(map[VOTE_DATE]);
 
   Vote.fromSnapshot(DocumentSnapshot snapshot, {required pollId})
       : this.fromMap(
@@ -27,6 +27,11 @@ class Vote {
   @override
   String toString() =>
       "Vote<personId=$votingPersonId, pollId=$pollId, answer=$answerIndex>";
+
+  static DateTime _toDate(dynamic dt) {
+    return Timestamp(dt.seconds, dt.nanoseconds).toDate();
+  }
+
 
   static Future<void> create(
       {required int answerIndex,
