@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rx_vote/color_search_page.dart';
 import 'package:flutter_rx_vote/db_service.dart';
 import 'package:flutter_rx_vote/person_data.dart';
 import 'package:flutter_rx_vote/polls_bloc.dart';
@@ -42,7 +43,8 @@ class MyHomePage extends StatelessWidget {
             PollsList(_pollsBloc.activePolls, title: 'Active polls'),
             PollsList(_pollsBloc.completedPolls, title: 'Completed Polls'),
             PollsList(_pollsBloc.pollsIVotedIn, title: 'Polls I have voted in'),
-            PollsList(_pollsBloc.pollsIHaveNoteVotedIn, title: 'Polls I have not voted in'),
+            PollsList(_pollsBloc.pollsIHaveNoteVotedIn,
+                title: 'Polls I have not voted in'),
             TextButton(
               onPressed: () {
                 Navigator.push(
@@ -53,6 +55,17 @@ class MyHomePage extends StatelessWidget {
                 );
               },
               child: const Text('Add Person'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ColorSearchPage(),
+                  ),
+                );
+              },
+              child: const Text('Color Search'),
             )
           ],
         ),
