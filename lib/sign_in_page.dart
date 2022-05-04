@@ -26,7 +26,7 @@ class SignInPage extends StatelessWidget {
         dbService.login(email);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const MyHomePage()),
+          MaterialPageRoute(builder: (context) => MyHomePage()),
         );
       },
       child: Text('Login as $email'),

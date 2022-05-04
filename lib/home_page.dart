@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_vote/db_service.dart';
 import 'package:flutter_rx_vote/person_data.dart';
+import 'package:flutter_rx_vote/polls_bloc.dart';
+import 'package:flutter_rx_vote/polls_list.dart';
 import 'package:flutter_rx_vote/signup_page.dart';
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  MyHomePage({Key? key}) : super(key: key);
+
+  final PollsBloc _pollsBloc = PollsBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +38,11 @@ class MyHomePage extends StatelessWidget {
                 return Text('${personsSnap.data!.length} persons');
               },
             ),
+            PollsList(_pollsBloc.allPolls, title: 'All polls'),
+            PollsList(_pollsBloc.activePolls, title: 'Active polls'),
+            PollsList(_pollsBloc.completedPolls, title: 'Completed Polls'),
+            PollsList(_pollsBloc.pollsIVotedIn, title: 'Polls I have voted in'),
+            PollsList(_pollsBloc.pollsIHaveNoteVotedIn, title: 'Polls I have not voted in'),
             TextButton(
               onPressed: () {
                 Navigator.push(
