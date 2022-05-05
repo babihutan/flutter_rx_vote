@@ -29,7 +29,7 @@ class _PollsPageState extends State<PollsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Polls Page'),
+        title: const Text('Polls'),
       ),
       body: Center(
         child: Column(

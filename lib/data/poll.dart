@@ -84,13 +84,48 @@ class Poll implements Comparable<Poll> {
     create(
       id: 'poll-1',
       postDate: DateTime.now().add(const Duration(days: -7)),
-      name: 'This is poll #1',
-      originatingPersonId: 'person-1',
-      answers: ['a', 'b', 'c'],
+      name: 'Best summer vacation spot',
+      originatingPersonId: 'person-5',
+      answers: ['Beach', 'Mountains', 'Europe'],
       deadline: DateTime.now().add(const Duration(days: 7)),
     );
+    create(
+      id: 'poll-2',
+      postDate: DateTime.now().add(const Duration(days: -21)),
+      name: 'Best way to NJ by car',
+      originatingPersonId: 'person-6',
+      answers: ['Holland Tunnel', 'Lincoln Tunnel', 'GWB'],
+      deadline: DateTime.now().add(const Duration(days: -14)),
+    );
+    create(
+      id: 'poll-3',
+      postDate: DateTime.now().add(const Duration(days: -7)),
+      name: 'What I like best about Flutter',
+      originatingPersonId: 'person-7',
+      answers: ['Hot Reload', '120 fps', 'Dash'],
+      deadline: DateTime.now().add(const Duration(days: 7)),
+    );
+
     Vote.create(answerIndex: 0, votingPersonId: 'person-1', pollId: 'poll-1');
     Vote.create(answerIndex: 0, votingPersonId: 'person-2', pollId: 'poll-1');
     Vote.create(answerIndex: 1, votingPersonId: 'person-3', pollId: 'poll-1');
+    Vote.create(answerIndex: 0, votingPersonId: 'person-4', pollId: 'poll-1');
+    Vote.create(answerIndex: 0, votingPersonId: 'person-5', pollId: 'poll-1');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-6', pollId: 'poll-1');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-7', pollId: 'poll-1');
+
+    Vote.create(answerIndex: 0, votingPersonId: 'person-1', pollId: 'poll-2');
+    Vote.create(answerIndex: 0, votingPersonId: 'person-2', pollId: 'poll-2');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-3', pollId: 'poll-2');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-4', pollId: 'poll-2');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-5', pollId: 'poll-2');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-6', pollId: 'poll-2');
+    Vote.create(answerIndex: 2, votingPersonId: 'person-7', pollId: 'poll-2');
+
+
+    Vote.create(answerIndex: 0, votingPersonId: 'person-4', pollId: 'poll-3');
+    Vote.create(answerIndex: 1, votingPersonId: 'person-5', pollId: 'poll-3');
+    Vote.create(answerIndex: 2, votingPersonId: 'person-6', pollId: 'poll-3');
+    Vote.create(answerIndex: 2, votingPersonId: 'person-7', pollId: 'poll-3');
   }
 }

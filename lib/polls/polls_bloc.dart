@@ -6,7 +6,6 @@ import 'poll_result.dart';
 import '../data/vote.dart';
 
 class PollsBloc {
-
   PollsBloc() {
     debugPrint('[polls_bloc] ctor');
     allPolls.listen((polls) {
@@ -69,6 +68,7 @@ class PollsBloc {
         dbService.votesMap,
         dbService.myPersonId,
         (List<Poll> polls, Map<String, List<Vote>> votesMap, String meId) {
+          debugPrint('[polls_bloc] polls i have not voted in entry');
           final List<Poll> list = [];
           list.addAll(polls);
           for (Poll poll in polls) {
@@ -87,11 +87,11 @@ class PollsBloc {
         },
       );
 
-  Stream<List<PollResult>> get allPollResults => Rx.combineLatest3(
+  Stream<List<PollResult>> get allPollResults => Rx.combineLatest2(
         allPolls,
         dbService.votesMap,
-        dbService.myPersonId,
-        (List<Poll> polls, Map<String, List<Vote>> votesMap, String meId) {
+        (List<Poll> polls, Map<String, List<Vote>> votesMap) {
+          debugPrint('[polls_bloc] all poll results entry');
           final List<PollResult> list = [];
           for (Poll poll in polls) {
             final votes = votesMap[poll.pollId];
@@ -110,7 +110,6 @@ class PollsBloc {
       );
 
   dispose() {
-
+    debugPrint('[polls_bloc] dispose');
   }
-
 }

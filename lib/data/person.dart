@@ -60,5 +60,21 @@ class Person implements Comparable<Person> {
         id: 'person-3',
         name: 'Felix Wallace',
         email: 'fwallace@mailinator.com');
+        create(
+        id: 'person-4',
+        name: 'Jennifer Song',
+        email: 'jsong@mailinator.com');
+            create(
+        id: 'person-5',
+        name: 'Mike Little',
+        email: 'michaellittle@mailinator.com');
+            create(
+        id: 'person-6',
+        name: 'Tim Thompson',
+        email: 'tthomp@mailinator.com');
+            create(
+        id: 'person-7',
+        name: 'Alicia Washington',
+        email: 'awashington@mailinator.com');
   }
 }

@@ -26,15 +26,18 @@ class DatabaseService {
   final _personsSubject = BehaviorSubject<List<Person>>();
   Stream<List<Person>> get persons => _personsSubject.stream;
 
+  //final _personsMapSubject = BehaviorSubject<Map<String, Person>>();
   final _personsMapSubject = BehaviorSubject.seeded(<String, Person>{});
   Stream<Map<String, Person>> get personsMap => _personsMapSubject.stream;
 
   final _pollsSubject = BehaviorSubject<List<Poll>>();
   Stream<List<Poll>> get polls => _pollsSubject.stream;
 
+  //final _pollsMapSubject = BehaviorSubject<Map<String, Poll>>();
   final _pollsMapSubject = BehaviorSubject.seeded(<String, Poll>{});
   Stream<Map<String, Poll>> get pollsMap => _pollsMapSubject.stream;
 
+  //final _votesMapSubject = BehaviorSubject<Map<String, List<Vote>>>();
   final _votesMapSubject = BehaviorSubject.seeded(<String, List<Vote>>{});
   Stream<Map<String, List<Vote>>> get votesMap => _votesMapSubject.stream;
 
@@ -104,19 +107,22 @@ class DatabaseService {
             '${Poll.COLLECTION_NAME}/$pollId/${Vote.SUB_COLLECTION_NAME}')
         .snapshots()
         .listen((QuerySnapshot qs) {
-      debugPrint('[db_service] There are ${qs.docs.length} votes for poll $pollId');
+      debugPrint(
+          '[db_service] There are ${qs.docs.length} votes for poll $pollId');
       final List<Vote> list = [];
       for (DocumentSnapshot ds in qs.docs) {
         final vote = Vote.fromSnapshot(ds, pollId: pollId);
         list.add(vote);
       }
-      final v = _votesMapSubject.value;
+      final v = _votesMapSubject.hasValue
+          ? _votesMapSubject.value
+          : <String, List<Vote>>{};
       v[pollId] = list;
       _votesMapSubject.sink.add(v);
     });
   }
 
-  login(String email) async {
+  login({required String email, required String name}) async {
     final qs = await FirebaseFirestore.instance
         .collection(Person.COLLECTION_NAME)
         .where(Person.EMAIL, isEqualTo: email)
@@ -126,7 +132,7 @@ class DatabaseService {
     } else if (qs.docs.length == 1) {
       _myPersonIdSubject.sink.add(qs.docs[0].id);
     } else {
-      final personId = await Person.create(name: '?', email: email);
+      final personId = await Person.create(name: name, email: email);
       _myPersonIdSubject.sink.add(personId);
     }
   }

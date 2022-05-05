@@ -27,7 +27,7 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Signup Page'),
+        title: const Text('Signup'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: StreamBuilder<bool?>(
