@@ -30,22 +30,29 @@ class _SignupPageState extends State<SignupPage> {
         title: const Text('Signup'),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: StreamBuilder<bool?>(
-        stream: _signupBloc.isSubmitValidBoelensFix,
-        builder: (context, isValidSnap) {
-          return ElevatedButton(
-            onPressed: (isValidSnap.hasData &&
-                    isValidSnap.data != null &&
-                    isValidSnap.data!)
-                ? () async {
-                    await _signupBloc.submit();
-                    Navigator.of(context).pop();
-                  }
-                : null,
-            child: const Text('Submit'),
-          );
+      floatingActionButton: ElevatedButton(
+        onPressed: () async {
+          await _signupBloc.submit();
+          Navigator.of(context).pop();
         },
+        child: const Text('Submit'),
       ),
+      // floatingActionButton: StreamBuilder<bool?>(
+      //   stream: _signupBloc.isSubmitValid,
+      //   builder: (context, isValidSnap) {
+      //     return ElevatedButton(
+      //       onPressed: (isValidSnap.hasData &&
+      //               isValidSnap.data != null &&
+      //               isValidSnap.data!)
+      //           ? () async {
+      //               await _signupBloc.submit();
+      //               Navigator.of(context).pop();
+      //             }
+      //           : null,
+      //       child: const Text('Submit'),
+      //     );
+      //   },
+      // ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,10 +61,10 @@ class _SignupPageState extends State<SignupPage> {
             padding: const EdgeInsets.all(8.0),
             child: _nameTextField(context),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: _emailTextField(context),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: _emailTextField(context),
+          // ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: _passwordTextField(context),
@@ -87,25 +94,25 @@ class _SignupPageState extends State<SignupPage> {
     );
   }
 
-  Widget _emailTextField(BuildContext context) {
-    return StreamBuilder(
-      stream: _signupBloc.email,
-      builder: (context, snapshot) {
-        return TextField(
-          style: const TextStyle(fontWeight: FontWeight.w500),
-          onChanged: _signupBloc.changeEmail,
-          keyboardType: TextInputType.emailAddress,
-          decoration: InputDecoration(
-            hintText: 'me@fun.com',
-            labelText: 'Email',
-            errorText: snapshot.hasError ? snapshot.error.toString() : null,
-            fillColor: Theme.of(context).primaryColorLight,
-            filled: true,
-          ),
-        );
-      },
-    );
-  }
+  // Widget _emailTextField(BuildContext context) {
+  //   return StreamBuilder(
+  //     stream: _signupBloc.email,
+  //     builder: (context, snapshot) {
+  //       return TextField(
+  //         style: const TextStyle(fontWeight: FontWeight.w500),
+  //         onChanged: _signupBloc.changeEmail,
+  //         keyboardType: TextInputType.emailAddress,
+  //         decoration: InputDecoration(
+  //           hintText: 'me@fun.com',
+  //           labelText: 'Email',
+  //           errorText: snapshot.hasError ? snapshot.error.toString() : null,
+  //           fillColor: Theme.of(context).primaryColorLight,
+  //           filled: true,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
   Widget _passwordTextField(BuildContext context) {
     return StreamBuilder(

@@ -25,9 +25,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     _databaseService = DatabaseService();
-    //TODO:  remove for shaft
-    _databaseService.login(email:'jamesjones@mailinator.com', 
-      name: 'James Jones');
+    // _databaseService.login(email:'jamesjones@mailinator.com', 
+    //   name: 'James Jones');
   }
 
   @override

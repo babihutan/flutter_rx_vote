@@ -18,7 +18,6 @@ class PollsBloc {
 
   Stream<List<Poll>> get allPolls => dbService.polls;
 
-  //TODO:  Live coding
   Stream<List<Poll>> get activePolls => allPolls.map(
         (polls) {
           final List<Poll> list = [];
@@ -69,7 +68,6 @@ class PollsBloc {
         },
       );
 
-  //TODO:  Live coding
   Stream<List<Poll>> get pollsIHaveNoteVotedIn => Rx.combineLatest3(
         allPolls,
         dbService.votesMap,
