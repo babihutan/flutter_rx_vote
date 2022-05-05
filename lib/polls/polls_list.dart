@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'poll.dart';
+import '../data/poll.dart';
 
 class PollsList extends StatelessWidget {
   final Stream<List<Poll>> pollsStream;

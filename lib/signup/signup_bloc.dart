@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rx_vote/validate_all_streams_have_data_and_no_errors.dart';
-import 'package:flutter_rx_vote/person_data.dart';
-import 'package:flutter_rx_vote/signup_validators.dart';
+import 'validate_all_streams_have_data_and_no_errors.dart';
+import '../data/person.dart';
+import 'signup_validators.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SignupBloc with SignupValidators {

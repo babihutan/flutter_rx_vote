@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
-import 'db_service.dart';
-import 'poll.dart';
+import '../data/db_service.dart';
+import '../data/poll.dart';
 import 'poll_result.dart';
-import 'vote.dart';
+import '../data/vote.dart';
 
 class PollsBloc {
 

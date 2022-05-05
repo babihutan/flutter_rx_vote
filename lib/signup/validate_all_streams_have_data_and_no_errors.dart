@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 //from didier boelens
 //see https://www.didierboelens.com/2020/01/form-validation-using-combinelatest-might-give-false-positives/
 class ValidateAllStreamsHaveDataAndNoErrors {

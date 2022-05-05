@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_vote/signup_bloc.dart';
+import 'signup_bloc.dart';
 
 class SignupPage extends StatefulWidget {
   const SignupPage({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import 'poll.dart';
+import '../data/poll.dart';
 
 class PollResult implements Comparable<PollResult> {
   final Poll poll;

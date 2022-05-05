@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'db_service.dart';
-import 'person_data.dart';
-import 'signup_page.dart';
-import 'github_api.dart';
-import 'polls_page.dart';
-import 'search_widget.dart';
+import 'data/db_service.dart';
+import 'data/person.dart';
+import 'signup/signup_page.dart';
+import 'github_search/github_api.dart';
+import 'polls/polls_page.dart';
+import 'github_search/search_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);

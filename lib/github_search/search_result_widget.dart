@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'github_api.dart';
 
 class SearchResultWidget extends StatelessWidget {

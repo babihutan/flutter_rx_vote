@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'db_service.dart';
+import 'data/db_service.dart';
 import 'firebase_options.dart';
 import 'sign_in_page.dart';
 
