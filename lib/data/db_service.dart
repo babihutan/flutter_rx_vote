@@ -15,7 +15,7 @@ class DatabaseService {
   }
 
   DatabaseService._internal() {
-    debugPrint('[db] ctor');
+    debugPrint('[db_service] ctor');
     _fetchPersons();
     _fetchPolls();
   }
@@ -52,7 +52,7 @@ class DatabaseService {
         .collection(Person.COLLECTION_NAME)
         .snapshots()
         .listen((QuerySnapshot qs) {
-      debugPrint('There are ${qs.docs.length} persons');
+      debugPrint('[db_service] There are ${qs.docs.length} persons');
       if (qs.docs.isEmpty) {
         if (qs.docs.isEmpty) {
           Person.initPersons();
@@ -77,7 +77,7 @@ class DatabaseService {
         .collection(Poll.COLLECTION_NAME)
         .snapshots()
         .listen((QuerySnapshot qs) {
-      debugPrint('There are ${qs.docs.length} polls');
+      debugPrint('[db_service] TThere are ${qs.docs.length} polls');
       if (qs.docs.isEmpty) {
         Poll.initPolls();
         return;
@@ -104,7 +104,7 @@ class DatabaseService {
             '${Poll.COLLECTION_NAME}/$pollId/${Vote.SUB_COLLECTION_NAME}')
         .snapshots()
         .listen((QuerySnapshot qs) {
-      debugPrint('There are ${qs.docs.length} votes for poll $pollId');
+      debugPrint('[db_service] There are ${qs.docs.length} votes for poll $pollId');
       final List<Vote> list = [];
       for (DocumentSnapshot ds in qs.docs) {
         final vote = Vote.fromSnapshot(ds, pollId: pollId);
@@ -132,6 +132,7 @@ class DatabaseService {
   }
 
   dispose() {
+    debugPrint('[db_service] dispose');
     _personsSubject.close();
     _pollsSubject.close();
     _personsMapSubject.close();

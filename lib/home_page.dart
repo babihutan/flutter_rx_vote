@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'data/db_service.dart';
 import 'data/person.dart';
 import 'signup/signup_page.dart';
@@ -38,7 +39,7 @@ class HomePage extends StatelessWidget {
                 }
                 return Column(
                   children: [
-                    for(Person p in personsSnap.data!) Text(p.name),
+                    for (Person p in personsSnap.data!) Text(p.name),
                   ],
                 );
               },
@@ -76,7 +77,7 @@ class HomePage extends StatelessWidget {
                 );
               },
               child: const Text('Github search'),
-            )
+            ),
           ],
         ),
       ),
