@@ -18,7 +18,8 @@ class PollResultsList extends StatelessWidget {
             margin: const EdgeInsets.only(top: 16),
             child: Text(
               'Loading $title ...',
-              style: const TextStyle(fontWeight: FontWeight.w600),
+              style: const TextStyle(fontWeight: FontWeight.w600, 
+                color:Colors.red),
             ),
           );
         }
@@ -84,7 +85,7 @@ class PollResultAnswer extends StatelessWidget {
                   Text(voter.name),
                 ],
               ),
-          ]),
+          ],),
     );
   }
 }
