@@ -1,5 +1,6 @@
 import 'dart:async';
 
+//TODO:  Know about StreamTransformer from Handlers
 class SignupValidators {
   final validateName =
       StreamTransformer<String, String>.fromHandlers(handleData: (name, sink) {

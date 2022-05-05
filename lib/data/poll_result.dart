@@ -1,6 +1,7 @@
 import 'package:flutter_rx_vote/data/person.dart';
-import '../data/poll.dart';
+import 'poll.dart';
 
+//TODO:  remove for shaft
 class PollResult implements Comparable<PollResult> {
 //class PollResult  {
   final Poll poll;

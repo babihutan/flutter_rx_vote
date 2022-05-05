@@ -3,7 +3,7 @@ import 'package:rxdart/rxdart.dart';
 import '../data/db_service.dart';
 import '../data/person.dart';
 import '../data/poll.dart';
-import 'poll_result.dart';
+import '../data/poll_result.dart';
 import '../data/vote.dart';
 
 class PollsBloc {
@@ -18,6 +18,7 @@ class PollsBloc {
 
   Stream<List<Poll>> get allPolls => dbService.polls;
 
+  //TODO:  Live coding
   Stream<List<Poll>> get activePolls => allPolls.map(
         (polls) {
           final List<Poll> list = [];
@@ -30,6 +31,8 @@ class PollsBloc {
         },
       );
 
+  //Alternatively we can use activePolls and all polls and 
+  //use sets to get the outer
   Stream<List<Poll>> get completedPolls => allPolls.map(
         (polls) {
           final List<Poll> list = [];
@@ -42,6 +45,9 @@ class PollsBloc {
         },
       );
 
+  //TODO:  Live coding
+  //Alternatively we can use activePolls and polls i have voted in and 
+  //use sets to get the outer
   Stream<List<Poll>> get pollsIVotedIn => Rx.combineLatest3(
         allPolls,
         dbService.votesMap,
@@ -64,6 +70,7 @@ class PollsBloc {
         },
       );
 
+  //TODO:  Live coding
   Stream<List<Poll>> get pollsIHaveNoteVotedIn => Rx.combineLatest3(
         allPolls,
         dbService.votesMap,

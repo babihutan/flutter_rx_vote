@@ -7,6 +7,7 @@ import 'package:rxdart/rxdart.dart';
 class SignupBloc with SignupValidators {
 
   SignupBloc() {
+    //TODO:  remove for shaft
     _validateAllStreamsHaveDataAndNoErrors = ValidateAllStreamsHaveDataAndNoErrors()
                                               ..listen([
                                                   name,
@@ -15,6 +16,7 @@ class SignupBloc with SignupValidators {
                                                 ]);
   }
 
+  //TODO:  remove for live coding
   final _emailSubject = BehaviorSubject<String>();
   Stream<String> get email => _emailSubject.stream.transform(validateEmail);
   Function(String) get changeEmail => _emailSubject.sink.add;
@@ -31,8 +33,8 @@ class SignupBloc with SignupValidators {
   Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
           (String n, String e, String pwd)  => true);
 
+  //TODO:  remove for shaft
   late ValidateAllStreamsHaveDataAndNoErrors _validateAllStreamsHaveDataAndNoErrors;
-
   Stream<bool?> get isSubmitValidBoelensFix => _validateAllStreamsHaveDataAndNoErrors.status;
 
   Future<void> submit() async {
