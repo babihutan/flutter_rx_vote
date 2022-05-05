@@ -31,29 +31,38 @@ class _SignupPageState extends State<SignupPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: StreamBuilder<bool?>(
-          stream: _signupBloc.isOk,
-          builder: (context, isValidSnap) {
-            return ElevatedButton(
-              onPressed: (isValidSnap.hasData &&
-                      isValidSnap.data != null &&
-                      isValidSnap.data!)
-                  ? () async {
-                      await _signupBloc.submit();
-                      Navigator.of(context).pop();
-                    }
-                  : null,
-              child: const Text('Submit'),
-            );
-          }),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            _nameTextField(context),
-            _emailTextField(context),
-            _passwordTextField(context),
-          ],
-        ),
+        stream: _signupBloc.isOk,
+        builder: (context, isValidSnap) {
+          return ElevatedButton(
+            onPressed: (isValidSnap.hasData &&
+                    isValidSnap.data != null &&
+                    isValidSnap.data!)
+                ? () async {
+                    await _signupBloc.submit();
+                    Navigator.of(context).pop();
+                  }
+                : null,
+            child: const Text('Submit'),
+          );
+        },
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _nameTextField(context),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _emailTextField(context),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: _passwordTextField(context),
+          ),
+        ],
       ),
     );
   }
@@ -63,12 +72,15 @@ class _SignupPageState extends State<SignupPage> {
       stream: _signupBloc.name,
       builder: (context, snapshot) {
         return TextField(
+          style: const TextStyle(fontWeight: FontWeight.w500),
           onChanged: _signupBloc.changeName,
           keyboardType: TextInputType.name,
           decoration: InputDecoration(
             hintText: 'Jim Jones',
             labelText: 'Name',
             errorText: snapshot.hasError ? snapshot.error.toString() : null,
+            fillColor: Theme.of(context).primaryColorLight,
+            filled: true,
           ),
         );
       },
@@ -80,12 +92,15 @@ class _SignupPageState extends State<SignupPage> {
       stream: _signupBloc.email,
       builder: (context, snapshot) {
         return TextField(
+          style: const TextStyle(fontWeight: FontWeight.w500),
           onChanged: _signupBloc.changeEmail,
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             hintText: 'me@fun.com',
             labelText: 'Email',
             errorText: snapshot.hasError ? snapshot.error.toString() : null,
+            fillColor: Theme.of(context).primaryColorLight,
+            filled: true,
           ),
         );
       },
@@ -97,12 +112,15 @@ class _SignupPageState extends State<SignupPage> {
       stream: _signupBloc.password,
       builder: (context, snapshot) {
         return TextField(
+          style: const TextStyle(fontWeight: FontWeight.w500),
           obscureText: true,
           onChanged: _signupBloc.changePassword,
           decoration: InputDecoration(
             hintText: 'Password',
             labelText: 'Password',
             errorText: snapshot.hasError ? snapshot.error.toString() : null,
+            fillColor: Theme.of(context).primaryColorLight,
+            filled: true,
           ),
         );
       },
