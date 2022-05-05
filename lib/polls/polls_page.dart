@@ -32,17 +32,21 @@ class _PollsPageState extends State<PollsPage> {
         title: const Text('Polls'),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PollsList(_pollsBloc.allPolls, title: 'All polls'),
-            PollResultsList(_pollsBloc.allPollResults, title: 'All poll results'),
-            PollsList(_pollsBloc.activePolls, title: 'Active polls'),
-            PollsList(_pollsBloc.completedPolls, title: 'Completed Polls'),
-            PollsList(_pollsBloc.pollsIVotedIn, title: 'Polls I have voted in'),
-            PollsList(_pollsBloc.pollsIHaveNoteVotedIn,
-                title: 'Polls I have not voted in'),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              PollsList(_pollsBloc.allPolls, title: 'All polls'),
+              PollsList(_pollsBloc.activePolls, title: 'Active polls'),
+              PollsList(_pollsBloc.completedPolls, title: 'Completed Polls'),
+              PollsList(_pollsBloc.pollsIVotedIn, title: 'Polls I have voted in'),
+              PollsList(_pollsBloc.pollsIHaveNoteVotedIn,
+                  title: 'Polls I have not voted in'),
+              PollResultsList(_pollsBloc.allPollResults, title: 'All poll results'),
+            ],
+          ),
         ),
       ),
     );

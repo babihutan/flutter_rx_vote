@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text('Me:'),
+            const Text('Me', style:TextStyle(fontWeight:FontWeight.bold)),
             StreamBuilder<Person?>(
               stream: dbService.me,
               builder: (context, meSnap) {
@@ -29,7 +29,8 @@ class HomePage extends StatelessWidget {
                 return Text(meSnap.data!.name);
               },
             ),
-            const Text('Everyone:'),
+            const SizedBox(height:24),
+            const Text('Everyone', style:TextStyle(fontWeight:FontWeight.bold)),
             StreamBuilder<List<Person>>(
               stream: dbService.persons,
               builder: (context, personsSnap) {
@@ -43,6 +44,7 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
+            const SizedBox(height:16),
             TextButton(
               onPressed: () {
                 Navigator.push(

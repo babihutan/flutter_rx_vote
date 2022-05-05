@@ -15,17 +15,17 @@ class SignupBloc with SignupValidators {
                                                 ]);
   }
 
-  final _passwordSubject = BehaviorSubject<String>();
   final _emailSubject = BehaviorSubject<String>();
-  final _nameSubject = BehaviorSubject<String>();
-
-  Stream<String> get name => _nameSubject.stream.transform(validateName);
   Stream<String> get email => _emailSubject.stream.transform(validateEmail);
+  Function(String) get changeEmail => _emailSubject.sink.add;
+
+  final _passwordSubject = BehaviorSubject<String>();
   Stream<String> get password =>
       _passwordSubject.stream.transform(validatePassword);
-
   Function(String) get changeName => _nameSubject.sink.add;
-  Function(String) get changeEmail => _emailSubject.sink.add;
+
+  final _nameSubject = BehaviorSubject<String>();
+  Stream<String> get name => _nameSubject.stream.transform(validateName);
   Function(String) get changePassword => _passwordSubject.sink.add;
 
   Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,

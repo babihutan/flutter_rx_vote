@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import '../data/db_service.dart';
+import '../data/person.dart';
 import '../data/poll.dart';
 import 'poll_result.dart';
 import '../data/vote.dart';
@@ -87,22 +88,29 @@ class PollsBloc {
         },
       );
 
-  Stream<List<PollResult>> get allPollResults => Rx.combineLatest2(
+  Stream<List<PollResult>> get allPollResults => Rx.combineLatest3(
         allPolls,
         dbService.votesMap,
-        (List<Poll> polls, Map<String, List<Vote>> votesMap) {
+        dbService.personsMap,
+        (List<Poll> polls, Map<String, List<Vote>> votesMap,
+            Map<String, Person> personsMap) {
           debugPrint('[polls_bloc] all poll results entry');
           final List<PollResult> list = [];
           for (Poll poll in polls) {
-            final votes = votesMap[poll.pollId];
-            final List<int> voteCounts =
-                List<int>.filled(poll.answers.length, 0);
-            if (votes != null) {
-              for (Vote vote in votes) {
-                voteCounts[vote.answerIndex] = voteCounts[vote.answerIndex] + 1;
+            final voteList = votesMap[poll.pollId];
+            final votes = List.generate(
+                poll.answers.length, (i) => List<Person>.empty(growable: true));
+            if (voteList != null) {
+              for (Vote vote in voteList) {
+                final person = personsMap[vote.votingPersonId];
+                if (person != null) {
+                  final list = votes[vote.answerIndex];
+                  list.add(person);
+                  votes[vote.answerIndex] = list;
+                }
               }
             }
-            list.add(PollResult(poll, voteCounts));
+            list.add(PollResult(poll, votes));
           }
           list.sort();
           return list;

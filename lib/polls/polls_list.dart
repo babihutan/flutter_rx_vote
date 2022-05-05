@@ -23,11 +23,15 @@ class PollsList extends StatelessWidget {
         }
         return Container(
           margin: const EdgeInsets.only(top: 16),
-          child: Column(children: [
-            Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-            if (pollListSnap.data!.isEmpty) const Text('No polls'),
-            for (Poll poll in pollListSnap.data!) Text(poll.name),
-          ]),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+              if (pollListSnap.data!.isEmpty) const Text('No polls'),
+              for (Poll poll in pollListSnap.data!) Text(poll.name),
+            ],
+          ),
         );
       },
     );
