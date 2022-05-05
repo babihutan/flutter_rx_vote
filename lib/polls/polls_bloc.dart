@@ -45,7 +45,6 @@ class PollsBloc {
         },
       );
 
-  //TODO:  Live coding
   //Alternatively we can use activePolls and polls i have voted in and 
   //use sets to get the outer
   Stream<List<Poll>> get pollsIVotedIn => Rx.combineLatest3(

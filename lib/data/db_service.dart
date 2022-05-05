@@ -27,16 +27,16 @@ class DatabaseService {
   Stream<List<Person>> get persons => _personsSubject.stream;
 
   //TODO:  remove for shaft
-  final _personsMapSubject = BehaviorSubject<Map<String, Person>>();
-  //final _personsMapSubject = BehaviorSubject.seeded(<String, Person>{});
+  //final _personsMapSubject = BehaviorSubject<Map<String, Person>>();
+  final _personsMapSubject = BehaviorSubject.seeded(<String, Person>{});
   Stream<Map<String, Person>> get personsMap => _personsMapSubject.stream;
 
   final _pollsSubject = BehaviorSubject<List<Poll>>();
   Stream<List<Poll>> get polls => _pollsSubject.stream;
 
   //TODO:  remove for shaft
-  final _pollsMapSubject = BehaviorSubject<Map<String, Poll>>();
-  //final _pollsMapSubject = BehaviorSubject.seeded(<String, Poll>{});
+  //final _pollsMapSubject = BehaviorSubject<Map<String, Poll>>();
+  final _pollsMapSubject = BehaviorSubject.seeded(<String, Poll>{});
   Stream<Map<String, Poll>> get pollsMap => _pollsMapSubject.stream;
 
   //TODO:  remove for shaft
