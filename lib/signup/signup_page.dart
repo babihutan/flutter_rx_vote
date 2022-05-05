@@ -31,7 +31,7 @@ class _SignupPageState extends State<SignupPage> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: StreamBuilder<bool?>(
-        stream: _signupBloc.isOk,
+        stream: _signupBloc.isSubmitValidBoelensFix,
         builder: (context, isValidSnap) {
           return ElevatedButton(
             onPressed: (isValidSnap.hasData &&

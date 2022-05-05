@@ -33,16 +33,7 @@ class SignupBloc with SignupValidators {
 
   late ValidateAllStreamsHaveDataAndNoErrors _validateAllStreamsHaveDataAndNoErrors;
 
-   Stream<bool?> get isOk => _validateAllStreamsHaveDataAndNoErrors.status;
-
-  // Stream<bool> get isSubmitValid => Rx.combineLatest3(name, email, password,
-  //         (String n, String e, String pwd) {
-  //       debugPrint('name=$n, email=$e, pwd=$pwd');
-  //       if (n.isEmpty || e.isEmpty || pwd.isEmpty) {
-  //         return false;
-  //       }
-  //       return true;
-  //     });
+  Stream<bool?> get isSubmitValidBoelensFix => _validateAllStreamsHaveDataAndNoErrors.status;
 
   Future<void> submit() async {
     final name = _nameSubject.value;
