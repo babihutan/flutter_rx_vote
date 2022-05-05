@@ -1,8 +1,11 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'vote.dart';
 
 class Poll implements Comparable<Poll> {
+
   static const String NAME = 'name';
   static const String ORIGINATING_PERSON_ID = 'originatingPersonId';
   static const String POSTING_DATE = 'postingDate';

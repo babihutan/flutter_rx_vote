@@ -19,22 +19,28 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            const Text('Me:'),
             StreamBuilder<Person?>(
               stream: dbService.me,
               builder: (context, meSnap) {
                 if (!meSnap.hasData || meSnap.data == null) {
                   return const Text('No data');
                 }
-                return Text('Me: ${meSnap.data!.name}');
+                return Text(meSnap.data!.name);
               },
             ),
+            const Text('Everyone:'),
             StreamBuilder<List<Person>>(
               stream: dbService.persons,
               builder: (context, personsSnap) {
                 if (!personsSnap.hasData) {
                   return const Text('No data');
                 }
-                return Text('${personsSnap.data!.length} persons');
+                return Column(
+                  children: [
+                    for(Person p in personsSnap.data!) Text(p.name),
+                  ],
+                );
               },
             ),
             TextButton(
@@ -48,7 +54,7 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Add Person'),
             ),
-                        TextButton(
+            TextButton(
               onPressed: () {
                 Navigator.push(
                   context,

@@ -5,7 +5,6 @@ import 'person_data.dart';
 import 'poll.dart';
 import 'vote.dart';
 
-
 var dbService = DatabaseService();
 
 class DatabaseService {
