@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rx_vote/vote.dart';
+import 'vote.dart';
 
 class Poll implements Comparable<Poll> {
   static const String NAME = 'name';

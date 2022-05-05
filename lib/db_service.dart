@@ -1,9 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rx_vote/person_data.dart';
-import 'package:flutter_rx_vote/poll.dart';
-import 'package:flutter_rx_vote/vote.dart';
 import 'package:rxdart/rxdart.dart';
+import 'person_data.dart';
+import 'poll.dart';
+import 'vote.dart';
+
 
 var dbService = DatabaseService();
 

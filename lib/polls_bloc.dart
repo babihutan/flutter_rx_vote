@@ -1,10 +1,12 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_rx_vote/db_service.dart';
-import 'package:flutter_rx_vote/poll.dart';
-import 'package:flutter_rx_vote/vote.dart';
 import 'package:rxdart/rxdart.dart';
+import 'db_service.dart';
+import 'poll.dart';
+import 'poll_result.dart';
+import 'vote.dart';
 
 class PollsBloc {
+
   PollsBloc() {
     debugPrint('[polls_bloc] ctor');
     allPolls.listen((polls) {
@@ -13,6 +15,7 @@ class PollsBloc {
       }
     });
   }
+
   Stream<List<Poll>> get allPolls => dbService.polls;
 
   Stream<List<Poll>> get activePolls => allPolls.map(
@@ -83,4 +86,31 @@ class PollsBloc {
           return list;
         },
       );
+
+  Stream<List<PollResult>> get allPollResults => Rx.combineLatest3(
+        allPolls,
+        dbService.votesMap,
+        dbService.myPersonId,
+        (List<Poll> polls, Map<String, List<Vote>> votesMap, String meId) {
+          final List<PollResult> list = [];
+          for (Poll poll in polls) {
+            final votes = votesMap[poll.pollId];
+            final List<int> voteCounts =
+                List<int>.filled(poll.answers.length, 0);
+            if (votes != null) {
+              for (Vote vote in votes) {
+                voteCounts[vote.answerIndex] = voteCounts[vote.answerIndex] + 1;
+              }
+            }
+            list.add(PollResult(poll, voteCounts));
+          }
+          list.sort();
+          return list;
+        },
+      );
+
+  dispose() {
+
+  }
+
 }

@@ -44,14 +44,6 @@ class SignupBloc with SignupValidators {
   //       return true;
   //     });
 
-  dispose() {
-    debugPrint('[signup_bloc] dispose');
-    _passwordSubject.close();
-    _emailSubject.close();
-    _nameSubject.close();
-    _validateAllStreamsHaveDataAndNoErrors.dispose();
-  }
-
   Future<void> submit() async {
     final name = _nameSubject.value;
     final email = _emailSubject.value;
@@ -60,4 +52,13 @@ class SignupBloc with SignupValidators {
     debugPrint('created person $personId');
     return;
   }
+
+  dispose() {
+    debugPrint('[signup_bloc] dispose');
+    _passwordSubject.close();
+    _emailSubject.close();
+    _nameSubject.close();
+    _validateAllStreamsHaveDataAndNoErrors.dispose();
+  }
+
 }

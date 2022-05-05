@@ -1,10 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rx_vote/signup_bloc.dart';
 
-class SignupPage extends StatelessWidget {
-  SignupPage({Key? key}) : super(key: key);
+class SignupPage extends StatefulWidget {
+  const SignupPage({Key? key}) : super(key: key);
 
-  final SignupBloc _signupBloc = SignupBloc();
+  @override
+  createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  late SignupBloc _signupBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _signupBloc = SignupBloc();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _signupBloc.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +34,12 @@ class SignupPage extends StatelessWidget {
           stream: _signupBloc.isOk,
           builder: (context, isValidSnap) {
             return ElevatedButton(
-              onPressed: (isValidSnap.hasData && 
-                isValidSnap.data!=null && 
-                isValidSnap.data!)
+              onPressed: (isValidSnap.hasData &&
+                      isValidSnap.data != null &&
+                      isValidSnap.data!)
                   ? () async {
                       await _signupBloc.submit();
                       Navigator.of(context).pop();
-                      _signupBloc.dispose();
                     }
                   : null,
               child: const Text('Submit'),

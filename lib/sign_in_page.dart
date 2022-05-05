@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_vote/db_service.dart';
-import 'package:flutter_rx_vote/home_page.dart';
+import 'db_service.dart';
+import 'home_page.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -26,7 +26,7 @@ class SignInPage extends StatelessWidget {
         dbService.login(email);
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => MyHomePage()),
+          MaterialPageRoute(builder: (context) => const HomePage()),
         );
       },
       child: Text('Login as $email'),

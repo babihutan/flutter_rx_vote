@@ -1,8 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rx_vote/db_service.dart';
-import 'package:flutter_rx_vote/firebase_options.dart';
-import 'package:flutter_rx_vote/sign_in_page.dart';
+import 'db_service.dart';
+import 'firebase_options.dart';
+import 'sign_in_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
