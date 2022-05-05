@@ -13,7 +13,10 @@ class PollResultsList extends StatelessWidget {
       stream: resultsStream,
       builder: (context, resultsListSnap) {
         if (!resultsListSnap.hasData) {
-          return Text('Loading $title ...');
+          return Container(
+              margin: const EdgeInsets.only(top: 16),
+              child: Text('Loading $title ...',
+                  style: const TextStyle(fontWeight: FontWeight.w600),),);
         }
         return Container(
           margin: const EdgeInsets.only(top: 16),

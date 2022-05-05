@@ -31,7 +31,7 @@ class _PollsPageState extends State<PollsPage> {
       appBar: AppBar(
         title: const Text('Polls'),
       ),
-      body: Center(
+      body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

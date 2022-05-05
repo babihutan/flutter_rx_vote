@@ -13,17 +13,21 @@ class PollsList extends StatelessWidget {
       stream: pollsStream,
       builder: (context, pollListSnap) {
         if (!pollListSnap.hasData) {
-          return Text('Loading $title ...');
+          return Container(
+            margin: const EdgeInsets.only(top: 16),
+            child: Text(
+              'Loading $title ...',
+              style: const TextStyle(fontWeight: FontWeight.w600),
+            ),
+          );
         }
         return Container(
-          margin: const EdgeInsets.only(top:16),
-          child: Column(
-            children: [
-              Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
-              if( pollListSnap.data!.isEmpty) const Text('No polls'),
-              for(Poll poll in pollListSnap.data!) Text(poll.name),
-            ]
-          ),
+          margin: const EdgeInsets.only(top: 16),
+          child: Column(children: [
+            Text(title, style: const TextStyle(fontWeight: FontWeight.w600)),
+            if (pollListSnap.data!.isEmpty) const Text('No polls'),
+            for (Poll poll in pollListSnap.data!) Text(poll.name),
+          ]),
         );
       },
     );
