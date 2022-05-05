@@ -8,6 +8,11 @@ import 'search_loading_widget.dart';
 import 'search_result_widget.dart';
 import 'search_state.dart';
 
+/*
+From ReactiveX / rxdart,  commit 5c766c53f1b17abb272ce7bd423c610d31aecc31
+https://github.com/ReactiveX/rxdart/tree/master/example/flutter/github_search/lib
+*/
+
 // The View in a Stream-based architecture takes two arguments: The State Stream
 // and the onTextChanged callback. In our case, the onTextChanged callback will
 // emit the latest String to a Stream<String> whenever it is called.

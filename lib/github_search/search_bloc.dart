@@ -3,6 +3,11 @@ import 'package:rxdart/rxdart.dart';
 import 'github_api.dart';
 import 'search_state.dart';
 
+/*
+From ReactiveX / rxdart,  commit 5c766c53f1b17abb272ce7bd423c610d31aecc31
+https://github.com/ReactiveX/rxdart/tree/master/example/flutter/github_search/lib
+*/
+
 class SearchBloc {
   final Sink<String> onTextChanged;
   final Stream<SearchState> state;

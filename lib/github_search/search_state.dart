@@ -1,5 +1,11 @@
 import 'github_api.dart';
 
+/*
+From ReactiveX / rxdart,  commit 5c766c53f1b17abb272ce7bd423c610d31aecc31
+https://github.com/ReactiveX/rxdart/tree/master/example/flutter/github_search/lib
+*/
+
+
 // The State represents the data the View requires. The View consumes a Stream
 // of States. The view rebuilds every time the Stream emits a new State!
 //

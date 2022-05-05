@@ -2,6 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+/*
+From ReactiveX / rxdart, commit 5c766c53f1b17abb272ce7bd423c610d31aecc31
+https://github.com/ReactiveX/rxdart/tree/master/example/flutter/github_search/lib
+*/
+
 class GithubApi {
   final String baseUrl;
   final Map<String, SearchResult> cache;
