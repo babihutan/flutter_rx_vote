@@ -17,7 +17,7 @@ class Person implements Comparable<Person> {
 
   @override
   int compareTo(Person p) {
-    return p.name.compareTo(name);
+    return name.compareTo(p.name);
   }
 
   Person.fromMap(Map<String, dynamic> map, this.reference)
